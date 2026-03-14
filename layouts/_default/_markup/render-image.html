@@ -1,0 +1,24 @@
+{{- $image := .Page.Resources.GetMatch .Destination -}}
+{{- if not $image -}}
+    {{- $image = resources.Get .Destination -}}
+{{- end -}}
+
+{{- if $image -}}
+  {{- $medium := $image.Resize "768x" -}}
+  {{- $large := $image.Resize "1200x" -}}
+
+  <img 
+    srcset="
+      {{ ($image.Resize "480x").RelPermalink }} 480w,
+      {{ $medium.RelPermalink }} 768w,
+      {{ $large.RelPermalink }} 1200w"
+    sizes="(max-width: 768px) 100vw, 1200px"
+    src="{{ $medium.RelPermalink }}" 
+    alt="{{ .Text }}" 
+    title="{{ .Title }}"
+    loading="lazy"
+    style="max-width: 100%; height: auto;"
+  >
+{{- else -}}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy">
+{{- end -}}

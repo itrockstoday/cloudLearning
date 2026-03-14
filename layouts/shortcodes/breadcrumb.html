@@ -1,0 +1,19 @@
+<div class="breadcrumb-container" style="margin-top: 4rem; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+    <div class="image-row" style="display: flex; justify-content: center; gap: 20px;">
+        
+        <div class="res-img img-square">
+            <a href="{{ "/" | absURL }}">
+                {{ $back := .Page.Resources.GetMatch "back-arrow.svg" }}
+                <img src="{{ if $back }}{{ $back.RelPermalink }}{{ else }}{{ "back-arrow.svg" | relURL }}{{ end }}" alt="Back">
+            </a>
+        </div>
+
+        <div class="res-img img-square">
+            <a href="{{ "/posts/" | absURL }}">
+                {{ $home := .Page.Resources.GetMatch "home-icon.svg" }}
+                <img src="{{ if $home }}{{ $home.RelPermalink }}{{ else }}{{ "home-icon.svg" | relURL }}{{ end }}" alt="Home">
+            </a>
+        </div>
+
+    </div>
+</div>

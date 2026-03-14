@@ -1,0 +1,44 @@
+baseURL = 'https://techbyjr.com/'
+languageCode = 'en-us'
+title = 'TechByJR'
+theme = 'hugo-theme-stack'
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = false  # Set to false to use external CSS, or true for inline
+    style = "hugo-theme-stack"  # Choose your preferred theme
+    
+[params]
+    [params.sidebar]
+        emoji = "🚀"
+        subtitle = "Tech Enthusiast & Content Creator"
+        avatar = "img/avatar.png"
+        
+        # This adds your custom text/link block to the sidebar
+        [params.sidebar.user]
+            description = "Check out my [Top Recommendations](/recommendations/) ⚡"
+
+    [params.widgets]
+        # Ensure 'user' is enabled to show the description above
+        enabled = ["user", "tag-cloud", "archives"]
+
+    [params.article]
+        readingTime = true
+        license = { enabled = true, default = "Released under MIT License" }
+
+# ... rest of your config
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
+    page = ["HTML", "RSS"]
+
+[menu]
+    [[menu.main]]
+        identifier = "home"
+        name = "Home"
+        url = "/"
+        weight = 1
+        params = { icon = "home" }
+

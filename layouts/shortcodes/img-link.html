@@ -1,0 +1,34 @@
+{{ $src := .Get "src" }}
+{{ $link := .Get "link" }}
+{{ $mode := .Get "mode" | default "square" }}
+{{ $caption := .Get "caption" | default "" }}
+{{ $img := .Page.Resources.GetMatch $src }}
+
+{{ $class := "img-square" }}
+{{ if eq $mode "strip" }}{{ $class = "img-strip" }}{{ end }}
+
+<div class="res-img {{ $class }}" title="{{ $caption }}">
+    {{ if $link }}
+    <a href="{{ $link | absURL }}" {{ if hasPrefix $link "http" }}target="_blank" rel="noopener"{{ end }}>
+    {{ end }}
+
+    {{ if $img }}
+        {{/* CHECK IF IMAGE IS SVG */}}
+        {{ if eq $img.MediaType.MainType "image" }}
+            {{ if eq $img.MediaType.SubType "svg" }}
+                {{/* It's an SVG: Use the original file (No Resize) */}}
+                <img src="{{ $img.RelPermalink }}" alt="{{ $caption }}">
+            {{ else }}
+                {{/* It's a JPG/PNG: Safe to Resize */}}
+                {{ $scaled := $img.Resize "400x" }}
+                <img src="{{ $scaled.RelPermalink }}" alt="{{ $caption }}">
+            {{ end }}
+        {{ end }}
+    {{ else }}
+        {{/* Fallback for external URLs */}}
+        <img src="{{ $src | safeURL }}" alt="{{ $caption }}">
+    {{ end }}
+
+    {{ if $link }}</a>{{ end }}
+</div>44
+

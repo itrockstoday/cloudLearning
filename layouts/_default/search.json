@@ -1,0 +1,12 @@
+{{- $index := slice -}}
+{{- range .Site.RegularPages -}}
+    {{- $index = $index | append (dict 
+        "title"    .Title
+        "tags"     .Params.tags
+        "content"  (.Plain | plainify)
+        "url"      .Permalink
+        "section"  .Section
+    ) -}}
+{{- end -}}
+{{- $index | jsonify -}}
+-- ../layouts/_default/search.json

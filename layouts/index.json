@@ -1,0 +1,14 @@
+{{- $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+{{- $data := slice -}}
+
+{{- range $pages -}}
+  {{- $data = $data | append (dict 
+    "title" .Title 
+    "date" (.Date.Format "2006-01-02")
+    "summary" .Summary
+    "url" .Permalink
+  ) -}}
+{{- end -}}
+
+{{- $data | jsonify -}}
+-- testStackFiveOne/layouts/index.json
