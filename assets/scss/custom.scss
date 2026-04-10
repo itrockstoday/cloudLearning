@@ -31,8 +31,8 @@
 
 /* 3. Option 1: The Square (10% Width x 10% Height) */
 .img-square {
-    width: 2vw !important;
-    height: 2vh !important;
+    width: 4vw !important;
+    height: 4vh !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Shadow on squares */
 
     &:hover {
@@ -42,8 +42,8 @@
 
 /* 4. Option 2: The Strip (10% Width x 2% Height) */
 .img-strip {
-    width: 2vw !important;
-    height: 2vh !important;
+    width: 4vw !important;
+    height: 4vh !important;
     min-height: 183px; /* Minimum height for usability on iPhone */
     box-shadow: none !important; /* No shadow on thin strips */
 }
